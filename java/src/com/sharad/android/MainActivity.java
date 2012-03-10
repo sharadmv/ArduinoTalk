@@ -1,7 +1,9 @@
 package com.sharad.android;
 
-import android.app.*;
-import android.os.*;
+import android.app.Activity;
+import android.os.Bundle;
+
+import com.flotype.bridge.Bridge;
 
 public class MainActivity extends Activity
 {
@@ -11,5 +13,6 @@ public class MainActivity extends Activity
 	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        Bridge bridge = new Bridge();
     }
 }
