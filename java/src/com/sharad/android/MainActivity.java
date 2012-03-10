@@ -17,12 +17,16 @@ import com.flotype.bridge.Service;
 public class MainActivity extends Activity {
 	String current = "";
 	PushClient pusher;
+	TextView view;
+	EditText text;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		view = (TextView) findViewById(R.id.view);
+		text = (EditText) findViewById(R.id.text);
 		// final Bridge bridge = new Bridge().setApiKey("abcdefgh");
 		// bridge.connect();
 		if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -38,9 +42,7 @@ public class MainActivity extends Activity {
 					public void push(String name, String message) {
 						System.out.println(name + ": " + message);
 						current += name + ": " + message + "\n";
-						TextView editText = (TextView) findViewById(R.id.view);
-						editText.setText(name + ": " + message + "\n",
-								TextView.BufferType.EDITABLE);
+						view.setText(name + ": " + message + "\n");
 					}
 				});
 				pusher = bridge.getChannel("andruino", PushClient.class);
@@ -52,25 +54,23 @@ public class MainActivity extends Activity {
 							}
 
 						});
-				((EditText) findViewById(R.id.text))
-						.setOnKeyListener(new OnKeyListener() {
+				text.setOnKeyListener(new OnKeyListener() {
 
-							public boolean onKey(View arg0, int keyCode,
-									KeyEvent event) {
-								if (event.getAction() == KeyEvent.ACTION_DOWN) {
-									switch (keyCode) {
-									case KeyEvent.KEYCODE_DPAD_CENTER:
-									case KeyEvent.KEYCODE_ENTER:
-										sendMessage();
-										return true;
-									default:
-										break;
-									}
-								}
-								return false;
+					public boolean onKey(View arg0, int keyCode, KeyEvent event) {
+						if (event.getAction() == KeyEvent.ACTION_DOWN) {
+							switch (keyCode) {
+							case KeyEvent.KEYCODE_DPAD_CENTER:
+							case KeyEvent.KEYCODE_ENTER:
+								sendMessage();
+								return true;
+							default:
+								break;
 							}
+						}
+						return false;
+					}
 
-						});
+				});
 			}
 
 		});
