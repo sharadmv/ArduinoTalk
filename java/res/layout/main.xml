@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:stretchColumns="1" >
+
+    <EditText android:id="@+id/text" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="50dp"
+        android:text="@string/send_button"
+        android:width="50px" />
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:id="@+id/view"
+        android:padding="3dip" />
 
-</LinearLayout>
+</TableLayout>
