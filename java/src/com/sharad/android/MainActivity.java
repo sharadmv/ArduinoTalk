@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		final Bridge bridge = new Bridge().setApiKey("abcdefgh");
+		final Bridge bridge = new Bridge().setApiKey("YkYztDEV");
 		bridge.connect();
 		bridge.joinChannel("andruino", new Service() {
 			public void push(String name, String message) {
@@ -27,19 +27,15 @@ public class MainActivity extends Activity {
 				((TextView) findViewById(R.id.view)).setText(current);
 			}
 		});
-		bridge.setEventHandler(new BridgeEventHandler() {
-
-			public void onReady() {
-				pusher = bridge.getChannel("andruino", PushClient.class);
-			}
-
-		});
-		findViewById(R.id.button).setOnClickListener(new OnClickListener(){
+		pusher = bridge.getChannel("andruino", PushClient.class);
+		findViewById(R.id.button).setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-				pusher.push("Android", ((TextView)findViewById(R.id.text)).getText().toString());	
+				System.out.println("SENDING");
+				pusher.push("Android", ((TextView) findViewById(R.id.text))
+						.getText().toString());
 			}
-			
+
 		});
 	}
 }
