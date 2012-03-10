@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		final Bridge bridge = new Bridge().setApiKey("YkYztDEV");
+		final Bridge bridge = new Bridge().setApiKey("abcdefgh");
 		bridge.connect();
 		bridge.joinChannel("andruino", new Service() {
 			public void push(String name, String message) {
